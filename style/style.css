@@ -12,6 +12,7 @@ body{
     align-items: center;
     flex-direction: column;
     background-color: #f6f6f6;
+    height: 100vh;
 }
 
 form{
@@ -90,6 +91,23 @@ img:not(.selected-avatar):hover {
     box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
 }
 
+#next-button{
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    align-self: center;
+    background-color: rgb(158, 158, 158);
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+#next-button:enabled {
+    background-color: #4caf50; /* vert */
+    cursor: pointer;
+}
+
 #profile-card {
     background: white;
     border-radius: 8px;
@@ -120,10 +138,9 @@ img:not(.selected-avatar):hover {
     transition: background-color 0.3s;
 }
   
-  #profile-card button:hover {
+#profile-card button:hover {
     background-color: #1976d2;
-}
-  
+}  
 
 #dark-mode-container{
     width: max-content;

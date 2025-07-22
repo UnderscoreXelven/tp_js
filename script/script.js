@@ -99,9 +99,10 @@ document.addEventListener("DOMContentLoaded", () => {
             form.style.display = "flex";
             nextButton.disabled = true;
             pseudoInput.value = "";
-            descriptionEl.textContent = "";
             avatars.forEach(img => img.classList.remove("selected-avatar"));
             errorMessage.textContent = "";
+            randomDescription();
+            validateForm();
         });
     });
 });
