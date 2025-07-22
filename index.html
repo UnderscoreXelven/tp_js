@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+    <script src="./script/script.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+</head>
+<body>
+    <form>
+        <h1>Créez votre profil</h1>
+        <div id="form-pseudo">
+            <label for="pseudo">Pseudo</label>
+            <input id="pseudo" placeholder="Entrez un pseudo..." id="pseudo">
+        </div>
+        <div id="form-avatars">
+            <h2>Choisissez un avatar</h2>
+            <img src="./images/msn-avatars-of-all-colors-v0-4k4l1oxd5uha1.webp">
+            <img src="./images/msn-avatars-of-all-colors-v0-h70w8hxd5uha1.webp">
+            <img src="./images/msn-avatars-of-all-colors-v0-kdmrknxd5uha1.webp">
+        </div>
+        <div id="form-description">
+            <h2>Votre description :</h2>
+            <p class="description-profil"></p>
+            <button type="button" class="description-button">Changer de description</button>
+        </div>
+        <button id="next-button" type="button" disabled>Suivant</button>
+    </form>
+
+    <div id="profile-card" style="display:none;"></div>
+
+    <div id="dark-mode-container">
+        <label class="switch">
+            <input type="checkbox">
+            <span class="slider round"></span>
+        </label>
+    </div>
+</body>
+</html>

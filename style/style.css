@@ -1,0 +1,253 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #313131;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f6f6f6;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 20px;
+}
+
+form input{
+    width: 200px;
+}
+
+form h1{
+    text-align: center;
+}
+
+#form-pseudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#form-avatars{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    justify-content: space-around;
+}
+
+#form-avatars > :first-child{
+    flex-basis: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+img{
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.selected-avatar {
+    outline: 3px solid #2196F3;
+    outline-offset: 3px;
+    filter: none;
+}
+
+img:not(.selected-avatar):hover {
+    filter: brightness(1.1);
+}
+
+#form-description{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+}
+
+.description-button {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    align-self: center;
+}
+
+.description-button:hover {
+    background-color: #1976d2;
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.4);
+}
+
+#profile-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-top: 20px;
+    color: #313131;
+}
+  
+#profile-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+  
+#profile-card button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+  
+  #profile-card button:hover {
+    background-color: #1976d2;
+}
+  
+
+#dark-mode-container{
+    width: max-content;
+    margin: auto;
+    position: absolute;
+    bottom: 10px;
+}
+
+/* Slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+  
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode input,
+body.dark-mode label,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode p {
+    color: #e0e0e0;
+}
+
+body.dark-mode form {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode img {
+    filter: brightness(0.8);
+}
+
+body.dark-mode .selected-avatar {
+    outline: 3px solid #90caf9;
+    outline-offset: 3px;
+    filter: brightness(1.1);
+}
+
+body.dark-mode img {
+    filter: brightness(0.8);
+}
+
+body.dark-mode .description-button {
+    background-color: #90caf9;
+    color: #212121;
+    box-shadow: none;
+}
+
+body.dark-mode .description-button:hover {
+    background-color: #64b5f6;
+    box-shadow: 0 4px 8px rgba(144, 202, 249, 0.6);
+}
+
+body.dark-mode input {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    border: 1px solid #555;
+}
+
+body.dark-mode input::placeholder {
+    color: #888;
+}
+
+body.dark-mode #profile-card {
+    background: #2c2c2c;
+    color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+}
