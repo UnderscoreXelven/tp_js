@@ -38,6 +38,13 @@ form h1{
     align-items: center;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    text-align: center;
+    margin-top: 5px;
+}
+
 #form-avatars{
     display: flex;
     flex-wrap: wrap;

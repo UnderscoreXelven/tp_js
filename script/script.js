@@ -1,4 +1,4 @@
-function randomDescription(){
+function randomDescription() {
     const descriptions = ["Haribo c'est beau la vie", "Oui c'est bien moi", "Hey bonjour à tous"];
     const randomDesc = descriptions[Math.floor(Math.random() * descriptions.length)];
     const element = document.querySelector(".description-profil");
@@ -6,21 +6,6 @@ function randomDescription(){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Description initiale
-    randomDescription();
-
-    // Dark mode toggle avec sauvegarde
-    const toggle = document.querySelector('#dark-mode-container input[type="checkbox"]');
-    const savedDarkMode = localStorage.getItem('dark-mode') === 'true';
-    toggle.checked = savedDarkMode;
-    document.body.classList.toggle('dark-mode', savedDarkMode);
-
-    toggle.addEventListener('change', () => {
-        const enabled = toggle.checked;
-        document.body.classList.toggle('dark-mode', enabled);
-        localStorage.setItem('dark-mode', enabled);
-    });
-
     // Variables éléments
     const btnDesc = document.querySelector(".description-button");
     const avatars = document.querySelectorAll("#form-avatars img");
@@ -29,14 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const descriptionEl = document.querySelector(".description-profil");
     const form = document.querySelector("form");
     const profileCard = document.getElementById("profile-card");
+    const errorContainer = document.getElementById("form-pseudo");
 
     // Message erreur pseudo
     const errorMessage = document.createElement("span");
-    errorMessage.style.color = "red";
-    errorMessage.style.fontSize = "0.9em";
-    errorMessage.style.textAlign = "center";
-    errorMessage.style.marginTop = "5px";
-    document.getElementById("form-pseudo").appendChild(errorMessage);
+    errorMessage.classList.add("error-message")
+    errorContainer.appendChild(errorMessage);
 
     // Fonction validation formulaire
     function validateForm() {
@@ -52,6 +35,55 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         nextButton.disabled = !(isPseudoValid && isAvatarSelected && isDescriptionPresent);
+    }
+
+    // Reset complet du profil et formulaire
+    function resetProfile() {
+        profileCard.style.display = "none";
+        form.style.display = "flex";
+        nextButton.disabled = true;
+        pseudoInput.value = "";
+        avatars.forEach(img => img.classList.remove("selected-avatar"));
+        errorMessage.textContent = "";
+        localStorage.removeItem("user-profile");
+        randomDescription();
+        validateForm();
+    }
+
+    // Affiche la carte profil avec données, et attache listener unique au bouton reset
+    function showProfileCard(profile) {
+        form.style.display = "none";
+        profileCard.innerHTML = `
+            <img src="${profile.avatar}" alt="Avatar de ${profile.pseudo}">
+            <h2>${profile.pseudo}</h2>
+            <p>${profile.description}</p>
+            <button id="reset-button">Recommencer</button>
+        `;
+        profileCard.style.display = "block";
+
+        const resetBtn = document.getElementById("reset-button");
+        resetBtn.addEventListener("click", resetProfile);
+    }
+
+    // Gestion dark mode (identique)
+    const toggle = document.querySelector('#dark-mode-container input[type="checkbox"]');
+    const savedDarkMode = localStorage.getItem('dark-mode') === 'true';
+    toggle.checked = savedDarkMode;
+    document.body.classList.toggle('dark-mode', savedDarkMode);
+
+    toggle.addEventListener('change', () => {
+        const enabled = toggle.checked;
+        document.body.classList.toggle('dark-mode', enabled);
+        localStorage.setItem('dark-mode', enabled);
+    });
+
+    // Description initiale
+    randomDescription();
+
+    // Vérifie s'il existe un profil sauvegardé
+    const savedProfile = JSON.parse(localStorage.getItem("user-profile"));
+    if (savedProfile) {
+        showProfileCard(savedProfile);
     }
 
     // Bouton changer description
@@ -81,28 +113,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!pseudo || !description || !avatar) return;
 
-        // Cacher formulaire et afficher carte profil
-        form.style.display = "none";
+        const profileData = {
+            pseudo,
+            description,
+            avatar: avatar.src
+        };
 
-        profileCard.innerHTML = `
-            <img src="${avatar.src}" alt="Avatar de ${pseudo}">
-            <h2>${pseudo}</h2>
-            <p>${description}</p>
-            <button id="reset-button">Recommencer</button>
-        `;
+        // Sauvegarde le profil
+        localStorage.setItem("user-profile", JSON.stringify(profileData));
 
-        profileCard.style.display = "block";
-
-        // Bouton recommencer
-        document.getElementById("reset-button").addEventListener("click", () => {
-            profileCard.style.display = "none";
-            form.style.display = "flex";
-            nextButton.disabled = true;
-            pseudoInput.value = "";
-            avatars.forEach(img => img.classList.remove("selected-avatar"));
-            errorMessage.textContent = "";
-            randomDescription();
-            validateForm();
-        });
+        // Affiche la carte avec les données
+        showProfileCard(profileData);
     });
 });
