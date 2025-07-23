@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resetBtn.addEventListener("click", resetProfile);
     }
 
-    // Gestion dark mode (identique)
+    // Gestion dark mode
     const toggle = document.querySelector('#dark-mode-container input[type="checkbox"]');
     const savedDarkMode = localStorage.getItem('dark-mode') === 'true';
     toggle.checked = savedDarkMode;
